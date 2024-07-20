@@ -30,7 +30,7 @@
  }
 }
 
-3.query GamesQuery {
+3. query GamesQuery {
   games{
     title,
     platform
@@ -60,7 +60,7 @@
   }
 }
 
-2 . query ReviewQuery($id: ID!) {
+2. query ReviewQuery($id: ID!) {
   review(id: $id) {
     rating
     game {
@@ -90,10 +90,26 @@
     platform
   }
 }
-JSON Given for adding new Game :-
-{
-  "game": {
-    "title": "GTA V",
-    "platform":["PS5"]
+   JSON Given for adding new Game :-
+  {
+   "game": {
+     "title": "GTA V",
+     "platform":["PS5"]
+   }
+  }
+
+#Edit Mutation
+
+1. mutation EditMutation($edits: EditGameInput!, $id: ID!) {
+  updateGame(edits: $edits, id: $id) {
+    title
+    platform
   }
 }
+  JSON Given for edit Game :-
+   {
+   "edits": {
+     "platform": "Switch",
+   },
+   "id":"1"
+   }
