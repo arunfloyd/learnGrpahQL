@@ -11,3 +11,89 @@
 
 - Over fetching :- Getting back more data than we need
 - Under fetching:- Getting back less data than we need
+
+
+#Some Querys
+
+1. query GamesQuery {
+  reviews {
+   id,
+   content,
+   rating
+ }
+}
+
+2. query GamesQuery {
+ authors {
+   name,
+   verified
+ }
+}
+
+3.query GamesQuery {
+  games{
+    title,
+    platform
+  }
+}
+
+#Query Variable for getting a single valued query
+
+1.query GamesQuery($id:ID!) {
+   review(id:$id) {
+     rating,
+     content
+   }
+ }
+
+
+#Related Data
+
+1. query GamesQuery($id:ID!) {
+  game(id:$id) {
+   title,
+   reviews {
+     rating,
+     content,
+     
+   }
+  }
+}
+
+2 . query ReviewQuery($id: ID!) {
+  review(id: $id) {
+    rating
+    game {
+      title
+      platform
+      reviews {
+        rating
+      }
+    }
+  }
+}
+
+#Mutations(Adding and Deleting Data)
+
+1. mutation DeleteMutation($id: ID!) {
+  deleteGame(id: $id) {
+    id
+    title
+    platform
+  }
+}
+
+2. mutation AddMutation($game: AddGameInput!) {
+  addGame(game: $game) {
+    id
+    title
+    platform
+  }
+}
+JSON Given for adding new Game :-
+{
+  "game": {
+    "title": "GTA V",
+    "platform":["PS5"]
+  }
+}
